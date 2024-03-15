@@ -1,0 +1,45 @@
+.Transactions {
+  margin: auto;
+  padding: 1rem;
+  width: 90%;
+  /* background: black; */
+}
+.Transactions .icon {
+  font-size: 30px;
+  color: rgb(73, 116, 10);
+  font-weight: bolder;
+  padding: .5rem;
+}
+
+.Transactions .t-cash {
+  display: grid;
+  border: 3px solid rgb(201, 201, 201);
+  border-radius: 50px;
+  grid-template-columns: 1fr 3fr;
+  cursor: pointer;
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+.Transactions .t-cash .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  background: none;
+  border: none;
+  padding: 2px;
+  background: rgb(89, 138, 16);
+  /* border-radius: 0; */
+  overflow: hidden;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  color: black;
+}
+.Transactions .t-cash .right {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: left;
+  padding: 0.5rem;
+}

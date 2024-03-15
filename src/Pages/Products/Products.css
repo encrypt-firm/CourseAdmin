@@ -1,0 +1,38 @@
+.Products .grid-container {
+  /* min-height: 95vh; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* grid-auto-rows: 400px; */
+  gap: 0.2rem;
+  /* margin: 1rem; */
+}
+
+.Products .grid-item {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  /* background: black; */
+}
+
+.Products .grid-item img {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: black;
+}
+
+.Products h3,
+.Products p {
+  /* margin-top: .3rem; */
+  /* padding: 0 0.5rem; */
+  text-align: center;
+}
+
+@media screen and (max-width: 325px) {
+  .Products h3,
+  .Products p {
+    text-align: center;
+  }
+}

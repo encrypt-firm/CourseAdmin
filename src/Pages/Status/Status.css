@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,900);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+[class*="entypo-"]:before {
+  font-family: "entypo", sans-serif;
+}
+
+.Status .new {
+  /* background: rgb(161, 57, 202); */
+  color: black;
+  text-align: center;
+  padding: 24px;
+  font-weight: bolder;
+  font-size: 26px;
+}
+.Status .new:hover {
+  cursor: pointer;
+  background: rgba(161, 57, 202, 0.201);
+  /* background: rgba(57, 202, 173, 0.9); */
+}
+.Status .messages {
+  padding: 10px;
+}
+.Status .message {
+  float: left;
+  width: 100%;
+  margin: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+.Status .message p {
+  font-size: 0.8em;
+  width: 90%;
+  margin: 5px 0;
+}
+.Status img {
+  border-radius: 50%;
+  float: left;
+  /* margin: 0 10px 15px 0; */
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+.Status p.time {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+.Status h2 {
+  font-size: 1em;
+  font-weight: 400;
+}
+.Status h2:after {
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background: #39caad;
+  border-radius: 100%;
+  margin-left: 5px;
+}
