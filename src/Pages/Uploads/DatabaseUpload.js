@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FirebaseFileInput from './FirebaseUploads'
+// import FirebaseFileInput from './FirebaseUploads'
 import axios from 'axios'
 import './form.css'
 

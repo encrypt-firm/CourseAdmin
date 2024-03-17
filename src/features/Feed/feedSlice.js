@@ -1,59 +1,47 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import feedService from "./feedService";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { addPost } from './feedService';
 
-const initialState = {
-    Feed: [],
-    isError: false,
-    isSuccess: false,
-    isLoading: false,
-    message: ''
-}
-
-
-// @****************************************@
-// ---------------Create Feed ----
-// @****************************************@
-
-export const createFeed = createAsyncThunk('Feed/createFeed', async (feedData, thunkAPI) => {
-    try {
-        const token = thunkAPI.getState().auth.user.token
-        return await feedService.createFeed(feedData, token)
-    } catch (error) {
-        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
+// Async thunk for adding a post
+export const addPostAsync = createAsyncThunk(
+    'feed/addPost',
+    async (postData, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token; // Replace with your actual token path
+            return await addPost(postData, token);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
     }
-})
-
-
-
+);
 
 export const feedSlice = createSlice({
-    name: 'Feed',
-    initialState,
+    name: 'feed',
+    initialState: {
+        posts: [],
+        isError: false,
+        isSuccess: false,
+        isLoading: false,
+        message: '',
+    },
     reducers: {
-        reset: (state) => initialState
+        // Reducers here if needed
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createFeed.pending, (state) => {
-                state.isLoading = true
+            .addCase(addPostAsync.pending, (state) => {
+                state.isLoading = true;
             })
-            .addCase(createFeed.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.Feed = action.payload
+            .addCase(addPostAsync.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.posts.push(action.payload);
             })
-            .addCase(createFeed.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-                state.Feed = []
-            })
+            .addCase(addPostAsync.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            });
+    },
+});
 
-    }
-})
-
-
-
-export const { reset } = feedSlice.actions
 export default feedSlice.reducer;
