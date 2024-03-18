@@ -61,23 +61,23 @@ function App() {
           </div>
         },
         {
-          path: "/dashboard/:userid/uploads",
+          path: "/dashboard/uploads/:id",
           element: <div className="Home"><Feeds /></div>
         },
         {
-          path: "/dashboard/:userid/products",
+          path: "/dashboard/products/:id",
           element: <div className="Home"><Products /></div>
         },
         {
-          path: "/dashboard/:userid/profile",
+          path: "/dashboard/profile/:id",
           element: <div className="Home">Profile</div>
         },
         {
-          path: "/dashboard/:userid/notifications",
+          path: "/dashboard/notifications/:id",
           element: <div className="Home"><Notifications /></div>
         },
         {
-          path: "/dashboard/:userid/settings",
+          path: "/dashboard/settings/:id",
           element: <div className="Home"><Orders /></div>
         },
       ]

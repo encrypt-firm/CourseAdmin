@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { addPost, getAllFeeds, getSingleFeed, deleteFeed } from './feedService';
+import { addPost, getSingleFeed, deleteFeed } from './feedService';
 
 
 const initialState = {
-    posts: [],
+    post: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const addPostAsync = createAsyncThunk(
-    'feed/addPost',
+    'feedUploadSlice/addPost',
     async (postData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
@@ -24,22 +24,8 @@ export const addPostAsync = createAsyncThunk(
     }
 );
 
-export const fetchAllFeedsAsync = createAsyncThunk(
-    'feed/fetchAll',
-    async (_, thunkAPI) => {
-        try {
-            // const token = thunkAPI.getState().auth.user.token;
-            return await getAllFeeds();
-        } catch (error) {
-            const message =
-                (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-);
-
 export const fetchSingleFeedAsync = createAsyncThunk(
-    'feed/fetchSingle',
+    'feedUploadSlice/fetchSingle',
     async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
@@ -53,7 +39,7 @@ export const fetchSingleFeedAsync = createAsyncThunk(
 );
 
 export const deleteFeedAsync = createAsyncThunk(
-    'feed/delete',
+    'feedUploadSlice/delete',
     async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
@@ -69,12 +55,12 @@ export const deleteFeedAsync = createAsyncThunk(
 
 
 
-export const feedSlice = createSlice({
+export const feedUploadSlice = createSlice({
     name: 'feed',
     initialState,
     reducers: {
         reset: (state) => {
-            state.posts = [];
+            state.post = [];
             state.isError = false;
             state.isSuccess = false;
             state.isLoading = false;
@@ -89,22 +75,9 @@ export const feedSlice = createSlice({
             .addCase(addPostAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.posts.push(action.payload);
+                state.post.push(action.payload);
             })
             .addCase(addPostAsync.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            })
-            .addCase(fetchAllFeedsAsync.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(fetchAllFeedsAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.posts = action.payload;
-            })
-            .addCase(fetchAllFeedsAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
@@ -115,7 +88,7 @@ export const feedSlice = createSlice({
             .addCase(fetchSingleFeedAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.posts = action.payload;
+                state.post = action.payload;
             })
             .addCase(fetchSingleFeedAsync.rejected, (state, action) => {
                 state.isLoading = false;
@@ -123,10 +96,10 @@ export const feedSlice = createSlice({
                 state.message = action.payload;
             })
             .addCase(deleteFeedAsync.fulfilled, (state, action) => {
-                state.posts = state.posts.filter(post => post._id !== action.payload);
+                state.post = state.post.filter(post => post._id !== action.payload);
             })
     },
 });
 
-export const { reset } = feedSlice.actions;
-export default feedSlice.reducer;
+export const { reset } = feedUploadSlice.actions;
+export default feedUploadSlice.reducer;

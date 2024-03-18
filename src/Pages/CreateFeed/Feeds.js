@@ -1,90 +1,120 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addPostAsync } from './../../features/Feed/feedSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPostAsync, reset } from './../../features/Feed/feedUploadSlice';
+import { toast } from "react-toastify"
+// import { useNavigate } from 'react-router-dom';
+import Spinner from '../../Components/Spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function AddPostForm() {
-  const [postData, setPostData] = useState({
-    title: '',
-    description: '',
-    categories: '',
-    images: [], // Include images in your state
-  });
 
-  const dispatch = useDispatch();
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPostData({
-      ...postData,
-      [name]: value,
-    });
-  };
-
-  const handleFileChange = (e) => {
-    // Update the images array in postData state
-    setPostData({
-      ...postData,
-      images: e.target.files,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Create FormData instance to handle files
-    const formData = new FormData();
-    formData.append('title', postData.title);
-    formData.append('description', postData.description);
-    formData.append('categories', postData.categories);
-    // Append each image file to the formData
-    Array.from(postData.images).forEach(image => {
-      formData.append('images', image);
+    const { isLoading, isSuccess, message, isError } = useSelector((state) => state.feedUpload)
+    const navigate = useNavigate()
+    const [postData, setPostData] = useState({
+        title: '',
+        description: '',
+        categories: '',
+        images: [],
     });
 
-    // Dispatch the action with formData
-    // Note: Your addPostAsync thunk should be adjusted to handle FormData
-    dispatch(addPostAsync(formData));
+    const dispatch = useDispatch();
 
-    // Reset the form or handle success feedback
-    setPostData({
-      title: '',
-      description: '',
-      categories: '',
-      images: [],
-    });
-  };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setPostData({
+            ...postData,
+            [name]: value,
+        });
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        value={postData.title}
-        onChange={handleInputChange}
-        placeholder="Title"
-      />
-      <textarea
-        name="description"
-        value={postData.description}
-        onChange={handleInputChange}
-        placeholder="Description"
-      />
-      <input
-        type="text"
-        name="categories"
-        value={postData.categories}
-        onChange={handleInputChange}
-        placeholder="Categories (comma separated)"
-      />
-      <input
-        type="file"
-        name="images"
-        onChange={handleFileChange}
-        multiple
-      />
-      <button type="submit">Submit Post</button>
-    </form>
-  );
+    const handleFileChange = (e) => {
+        setPostData({
+            ...postData,
+            images: e.target.files,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('title', postData.title);
+        formData.append('description', postData.description);
+        formData.append('categories', postData.categories);
+        Array.from(postData.images).forEach(image => {
+            formData.append('images', image);
+        });
+        dispatch(addPostAsync(formData));
+        setPostData({
+            title: '',
+            description: '',
+            categories: '',
+            images: [],
+        });
+    };
+
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+            dispatch(reset());
+        } else if (isSuccess) {
+            toast.success("Post created successfully");
+            navigate('/')
+            dispatch(reset());
+        }
+    }, [isSuccess, isError, message, dispatch, navigate]);
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
+
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                required
+                type="text"
+                name="title"
+                value={postData.title}
+                onChange={handleInputChange}
+                placeholder="Title"
+            />
+            <textarea
+                required
+                name="description"
+                value={postData.description}
+                onChange={handleInputChange}
+                placeholder="Description"
+            />
+            {/* Category dropdown */}
+            <div className="form-group">
+                <select
+                    required
+                    name="categories"
+                    value={postData.categories}
+                    onChange={handleInputChange}
+                    className="custom-select-box"
+                >
+                    <option value="">Choose Category</option>
+                    <option value="Category One">Category One</option>
+                    <option value="Category Two">Category Two</option>
+                    <option value="Category Three">Category Three</option>
+                    <option value="Category Four">Category Four</option>
+                </select>
+            </div>
+            <input
+                required
+                type="file"
+                name="images"
+                onChange={handleFileChange}
+                multiple
+            />
+            <button type="submit">Submit Post</button>
+        </form>
+    );
 }
 
 export default AddPostForm;

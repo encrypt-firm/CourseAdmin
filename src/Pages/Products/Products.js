@@ -1,41 +1,60 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Products.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllFeedsAsync } from '../../features/Feed/feedSlice'
+import Spinner from '../../Components/Spinner/Spinner'
+import { Link } from 'react-router-dom'
+import { MdOutlineEditLocationAlt } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
+
 const Products = () => {
+    const { posts, isLoading } = useSelector((state) => state.feed)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchAllFeedsAsync())
+    }, [dispatch])
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
     return (
         <>
             <div className="Products">
-                <ul className="grid-container">
-                    <li className="grid-item">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/tarajiaapplication-c9016.appspot.com/o/images%2F1702158516860paul-gaudriault-a-QH9MAAVNI-unsplash.jpg?alt=media&token=65123d78-11a6-4ac8-b939-d6114953f00c" alt='product' />
-                        <h3>Nike</h3>
-                        <p>Amazing shoes</p>
-                        <p>Ksh 3500  In Stock (18)</p>
-                    </li>
-                    <li className="grid-item">
-                        <img src="https://images.unsplash.com/photo-1525092029632-cb75fe5dd776?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8QURJREFTfGVufDB8fDB8fHww" alt='product' />
-                        <h3>Nike</h3>
-                        <p>Amazing shoes</p>
-                        <p>Ksh 3500  In Stock (18)</p>
-                    </li>
-                    <li className="grid-item">
-                        <img src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEFESURBU3xlbnwwfHwwfHx8MA%3D%3D" alt='product' />
-                        <h3>Nike</h3>
-                        <p>Amazing shoes</p>
-                        <p>Ksh 3500  In Stock (18)</p>
-                    </li>
-                    <li className="grid-item">
-                        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fEFESURBU3xlbnwwfHwwfHx8MA%3D%3D" alt='product' />
-                        <h3>Nike</h3>
-                        <p>Amazing shoes</p>
-                        <p>Ksh 3500  In Stock (18)</p>
-                    </li>
-                    <li className="grid-item">
-                        <img src="https://images.unsplash.com/photo-1610687528266-e3bc57b5d5b6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80" alt='product' />
-                        <h3>Nike</h3>
-                        <p>Amazing shoes</p>
-                        <p>Ksh 3500  In Stock (18)</p>
-                    </li>
-                </ul>
+                <main>
+                    <div className="container">
+                        <div className="gallery">
+                            {posts.map(post => (
+                                <div className="gallery-item" tabindex="0" key={post._id}>
+                                    {post.images && post.images.length > 0 && (
+                                        <img src={post.images[0].url} className="gallery-image" alt="" />
+                                    )}
+                                    <div className="gallery-item-info">
+                                        <ul>
+                                            <li className="gallery-item-likes"><span className="visually-hidden">Edit</span>
+                                                <Link className='Link edit' to={`/editfeed/${post._id}`} >
+                                                    <MdOutlineEditLocationAlt />
+                                                </Link>
+                                            </li>
+                                            <li className="gallery-item-comments"><span className="visually-hidden">Delete</span>
+                                                <Link className='Link delete' to={`/delete/${post._id}`}>
+                                                    <MdDelete />
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {/* <!-- End of gallery --> */}
+                        <div className="loader2"></div>
+
+                    </div>
+                    {/* <!-- End of container --> */}
+
+                </main>
             </div>
         </>
     )
