@@ -67,7 +67,6 @@ function Header() {
                 <div className="nav-links">
                     <ul>
                         <li> <Link className='Link' to='/category/oils'>Courses</Link></li>
-                        {/* <li> <Link className='Link' to='/products'>Vibe X</Link></li> */}
                         <li> <Link className='Link' to='/ingredients'>Ingredients</Link></li>
                         <li> <Link className='Link' to='/FAQ'>FAQ</Link></li>
                     </ul>
@@ -84,28 +83,18 @@ function Header() {
                     <div className="categories">
                         {user ? (
                             <>
-                                {/* <h5 className='userName'>Hi {user.username}</h5> */}
-                                {/* <Link className='userName' to={`/app/${user._id}`}> */}
                                 <div className='userName' onClick={() => setShowMenuIcon(!showMenuIcon)}>
                                     <img src={user.profilePicture.url} alt="profile" />
                                 </div>
                                 {showMenuIcon && (
                                     <div ref={menuRef} className="menuIcon">
-                                        {/* <Link to={`/app/${user._id}`}><button>My Dashboard</button></Link> */}
                                         <Link><button onClick={onLogout}>Logout</button></Link>
                                     </div>
                                 )}
-                                {/* <div className="menuIcon">
-
-                                </div> */}
-
                             </>
 
                         ) : (
                             <>
-                                {/* <li>
-                                        <Link to='/login' className='linkTo'><FaUserAlt /><span>LogIn</span></Link>
-                                    </li> */}
                                 <li>
                                     <Link to='/login' className='linkTo'><FaUser className='noneUser' /></Link>
                                 </li>
@@ -116,30 +105,13 @@ function Header() {
 
                     <nav className="headerNav">
                         <ul className='headerNav-ul'>
-                            {/* <Link to='/shop/dashboard/cupouns'>
-                                <li className="cartButton">
-                                    <FaGifts className='cart-icon' />
-                                    <div className="cart"><span>1</span></div>
-                                </li>
-                            </Link>
-                            <Link to='/shop/dashboard/events'>
-                                <li className="cartButton">
-                                    <MdOutlineDeveloperBoard className='cart-icon' />
-                                    <div className="cart"><span>4</span></div>
-                                </li>
-                            </Link> */}
                             <Link to='/shop/dashboard/events'>
                                 <li className="cartButton">
                                     <BsCart4 className='cart-icon' />
                                     <div className="cart"><span>0</span></div>
                                 </li>
                             </Link>
-                            {/* <Link to='/shop/dashboard/events'>
-                                <li className="cartButton">
-                                    <LuPackagePlus className='cart-icon' />
-                                    <div className="cart"><span>4</span></div>
-                                </li>
-                            </Link> */}
+
                         </ul >
                     </nav >
                 </div>
