@@ -15,6 +15,7 @@ import Products from './Pages/Products/Products';
 import LoginPage from './Pages/Login/LoginPage.js'
 import RegisterPage from './Pages/Register/RegisterPage.js'
 import Feeds from './Pages/CreateFeed/Feeds.js';
+import FeedsUpdate from './Pages/CreateFeed/FeedsUpdate.js';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './Components/Header/Header.js';
@@ -79,6 +80,10 @@ function App() {
         {
           path: "/dashboard/settings/:id",
           element: <div className="Home"><Orders /></div>
+        },
+        {
+          path: "/dashboard/editfeed/:id",
+          element: <div className="Home"><FeedsUpdate /></div>
         },
       ]
     },

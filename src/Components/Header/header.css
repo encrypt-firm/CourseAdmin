@@ -10,6 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 80%;
+  margin: auto;
   /* padding: 0.1rem 1rem; */
   z-index: 3;
 }
@@ -281,6 +283,7 @@ li {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 0.3rem;
   /* background: black; */
 }
 
@@ -361,4 +364,81 @@ li {
   /* border-radius: 50%; */
   color: green;
   font-size: 25px;
+}
+
+@media screen and (max-width: 830px) {
+  .Header .cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    /* padding: 0.1rem 1rem; */
+    z-index: 3;
+  }
+  .Header .nav-links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem 0;
+    /* background: black; */
+  }
+
+  .Header .nav-links ul li .Link {
+    padding: 10px;
+    font-size: 10px;
+    background: rgba(245, 245, 245, 0.35);
+    border: 1px solid rgba(8, 141, 3, 0.134);
+    list-style: none;
+    color: green;
+    border-radius: 50px;
+    /* background: black; */
+  }
+  .Header .sellers h2 {
+    font-size: 10px;
+    padding: 0.2rem;
+    background: green;
+    color: white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Header .nav-links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem 0;
+    /* background: black; */
+  }
+
+  .Header .nav-links ul li .Link {
+    padding: 3px;
+    font-size: 8px;
+    background: rgba(245, 245, 245, 0.35);
+    border: 1px solid rgba(8, 141, 3, 0.134);
+    list-style: none;
+    color: green;
+    border-radius: 50px;
+    /* background: black; */
+  }
+  .Header .sellers h2 {
+    font-size: 10px;
+    padding: 0.2rem;
+    background: green;
+    color: white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

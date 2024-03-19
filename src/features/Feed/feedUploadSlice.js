@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { addPost, getSingleFeed, deleteFeed } from './feedService';
+import { addPost, getSingleFeed, updateSingleFeed, deleteFeed } from './feedService';
 
 
 const initialState = {
@@ -30,6 +30,19 @@ export const fetchSingleFeedAsync = createAsyncThunk(
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await getSingleFeed(id, token);
+        } catch (error) {
+            const message =
+                (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+export const updateSingleFeedAsync = createAsyncThunk(
+    'feedUploadSlice/updateSingle',
+    async ({ id, formData }, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token;
+            return await updateSingleFeed(id, token, formData);
         } catch (error) {
             const message =
                 (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -78,6 +91,19 @@ export const feedUploadSlice = createSlice({
                 state.post.push(action.payload);
             })
             .addCase(addPostAsync.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(updateSingleFeedAsync.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(updateSingleFeedAsync.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.post.push(action.payload);
+            })
+            .addCase(updateSingleFeedAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

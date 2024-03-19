@@ -38,6 +38,14 @@ export const getSingleFeed = async (id) => {
     });
     return response.data;
 };
+export const updateSingleFeed = async (id, token, formData) => {
+    const response = await axios.put(`${API_URL}/${id}`, formData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.data;
+};
 
 export const deleteFeed = async (id, token) => {
     const response = await axios.delete(`${API_URL}/${id}`, {

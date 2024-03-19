@@ -3,13 +3,13 @@ import './header.css'
 import Logo from './../../Assets/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { GiSellCard } from "react-icons/gi";
+// import { GiSellCard } from "react-icons/gi";
 import { FaUser } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
+import { logout, reset } from '../../features/Auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { logout, reset } from '../../features/Auth/authSlice';
-
+import { AiOutlineSchedule } from "react-icons/ai";
 
 
 
@@ -66,16 +66,16 @@ function Header() {
                 </div>
                 <div className="nav-links">
                     <ul>
-                        <li> <Link className='Link' to='/bestselling'>Courses</Link></li>
-                        <li> <Link className='Link' to='/products'>Vibe X</Link></li>
-                        <li> <Link className='Link' to='/events'>Formulations</Link></li>
+                        <li> <Link className='Link' to='/category/oils'>Courses</Link></li>
+                        {/* <li> <Link className='Link' to='/products'>Vibe X</Link></li> */}
+                        <li> <Link className='Link' to='/ingredients'>Ingredients</Link></li>
                         <li> <Link className='Link' to='/FAQ'>FAQ</Link></li>
                     </ul>
                 </div>
 
                 <div className="sellers">
                     <Link className='Link' to='/shop/create'>
-                        <h2>Buy Products <GiSellCard /></h2>
+                        <h2>Appointment <AiOutlineSchedule /></h2>
                     </Link>
                 </div>
             </div>
@@ -86,9 +86,9 @@ function Header() {
                             <>
                                 {/* <h5 className='userName'>Hi {user.username}</h5> */}
                                 {/* <Link className='userName' to={`/app/${user._id}`}> */}
-                                <Link className='userName' onClick={() => setShowMenuIcon(!showMenuIcon)}>
+                                <div className='userName' onClick={() => setShowMenuIcon(!showMenuIcon)}>
                                     <img src={user.profilePicture.url} alt="profile" />
-                                </Link>
+                                </div>
                                 {showMenuIcon && (
                                     <div ref={menuRef} className="menuIcon">
                                         <Link to={`/app/${user._id}`}><button>My Dashboard</button></Link>

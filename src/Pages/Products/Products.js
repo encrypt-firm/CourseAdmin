@@ -25,6 +25,7 @@ const Products = () => {
             <div className="Products">
                 <main>
                     <div className="container">
+                        <h3>My Posts</h3>
                         <div className="gallery">
                             {posts.map(post => (
                                 <div className="gallery-item" tabindex="0" key={post._id}>
@@ -34,7 +35,7 @@ const Products = () => {
                                     <div className="gallery-item-info">
                                         <ul>
                                             <li className="gallery-item-likes"><span className="visually-hidden">Edit</span>
-                                                <Link className='Link edit' to={`/editfeed/${post._id}`} >
+                                                <Link className='Link edit' to={`/dashboard/editfeed/${post._id}`} >
                                                     <MdOutlineEditLocationAlt />
                                                 </Link>
                                             </li>
