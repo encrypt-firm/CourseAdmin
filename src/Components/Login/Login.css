@@ -1,0 +1,96 @@
+.Login {
+  background-size: cover;
+  background-position: center;
+  background-image: url("./../../Assets/greeney.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Login .contanier {
+  /* background: rgba(255, 255, 255, 0.828); */
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.Login .contanier h1 {
+  font-size: 28px;
+  font-weight: bolder;
+  color: rgb(243, 255, 226);
+}
+.Login .contanier .login .l-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  width: 100%;
+}
+.Login .contanier .login .l-cover input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid rgb(247, 247, 247);
+  color: rgb(255, 255, 255);
+  outline: none;
+  background: none;
+}
+.Login .contanier .login .l-cover .eye {
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+}
+.Login .contanier .login .Link {
+  font-size: 16px;
+  font-weight: bold;
+  color: maroon;
+}
+.Login .contanier button {
+  font-size: 16px;
+  font-weight: bold;
+  color: green;
+  background: rgba(255, 255, 255, 0.397);
+  border: 1px solid rgb(186, 183, 187);
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Login .contanier .or {
+  font-size: 26px;
+  font-weight: bold;
+  color: green;
+  background: none;
+  margin-top: 1rem;
+  text-align: center;
+}
+.Login .contanier .options {
+  font-size: 26px;
+  font-weight: bold;
+  color: green;
+  background: none;
+  /* margin-top: 1rem; */
+  text-align: center;
+}
+.Login .contanier .options .fa-brands {
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.Login .contanier .signUp {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+.Login .contanier .signUp .Link {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}

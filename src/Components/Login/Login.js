@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CiFacebook } from "react-icons/ci";
 import Spinner from '../Spinner/Spinner'
 import { login, reset } from '../../features/Auth/authSlice'
+import './Login.css'
 
 
 function Login() {
@@ -64,50 +65,54 @@ function Login() {
         <div className='Login'>
             <form onSubmit={onSubmit}>
                 <div className="contanier">
-                    <h1>Hello,create account</h1>
+                    <h1>Hello, Let's log you back</h1>
                     <div className="login">
-                        <label id="userLabel">Email</label>
-                        <input
-                            className="usInput"
-                            // type="text"
-                            placeholder="Type your Email"
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={onChange}
-                            required
-                        />
-                        <label id="passLabel">Password</label>
-                        <input className="pwInput"
-                            // type="password"
-                            placeholder="Type your password"
-                            id="password"
-                            type={visible ? "text" : "password"}
-                            name="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={onChange}
-                            required
-                        />
-                        {visible ? (
-                            <AiOutlineEye
-                                className="eye"
-                                onClick={() => setVisible(false)}
+                        <div className="l-cover">
+                            {/* <label id="userLabel">Email</label> */}
+                            <input
+                                className="usInput"
+                                // type="text"
+                                placeholder="Type your Email"
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={onChange}
+                                required
                             />
-                        ) : (
-                            <AiOutlineEyeInvisible
-                                className="eye"
-                                onClick={() => setVisible(true)}
+                        </div>
+                        <div className="l-cover">
+                            {/* <label id="passLabel">Password</label> */}
+                            <input className="pwInput"
+                                // type="password"
+                                placeholder="Type your password"
+                                id="password"
+                                type={visible ? "text" : "password"}
+                                name="password"
+                                autoComplete="current-password"
+                                value={password}
+                                onChange={onChange}
+                                required
                             />
-                        )}
+                            {visible ? (
+                                <AiOutlineEye
+                                    className="eye"
+                                    onClick={() => setVisible(false)}
+                                />
+                            ) : (
+                                <AiOutlineEyeInvisible
+                                    className="eye"
+                                    onClick={() => setVisible(true)}
+                                />
+                            )}
+                        </div>
                         {/* <p>Or Create Account</p> */}
                         <p><Link className='Link' to='/account/forgot-password'>Forgot Password?</Link></p>
                     </div>
                     <button id="login-Button" type='submit'>LOGIN</button>
                     <div className="or">
-                        <hr />
-                        <p>Or</p>
+                        {/* <hr /> */}
+                        <p>Or 😉</p>
                     </div>
                     <div className="options">
                         {/* <CiFacebook id="F" class="fa-brands fa-facebook" /> */}
@@ -116,7 +121,7 @@ function Login() {
                         {/* <i id="S" class="fa-brands fa-twitter"></i> */}
                         {/* <i id="T" class="fa-brands fa-google"></i> */}
                     </div>
-                    <p className="signUp">Need to create an account?  <Link className='Link' to='/register'>SIGN UP</Link></p>
+                    <p className="signUp">Need to create an account?  <Link className='Link' to='/register'>Create Account</Link></p>
                 </div>
             </form>
         </div>

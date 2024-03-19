@@ -1,24 +1,32 @@
-import React, { useEffect } from 'react'
-import './Home.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllFeedsAsync } from '../../features/Feed/feedSlice'
-import Spinner from '../Spinner/Spinner'
-// import Messages from '../../Pages/Tarajia/Messages'
-// import Transactions from '../../Pages/Transactions/Transactions'
-// import Status from '../../Pages/Status/Status'
+import React, { useEffect } from 'react';
+import './Home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllFeedsAsync } from '../../features/Feed/feedSlice';
+import Spinner from '../Spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const dispatch = useDispatch()
-    const { posts, isLoading } = useSelector((state) => state.feed)
-    const { user } = useSelector(state => state.auth)
+    const dispatch = useDispatch();
+    const { posts, isLoading } = useSelector((state) => state.feed);
+    const { user } = useSelector(state => state.auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(fetchAllFeedsAsync())
-    }, [dispatch])
+        dispatch(fetchAllFeedsAsync());
+        if (!user) {
+            navigate('/login');
+        }
+    }, [dispatch, user, navigate]);
 
     if (isLoading) {
-        return <Spinner />
+        return <Spinner />;
     }
+
+    if (!user) {
+        return null;
+    }
+
+    const userProfile = user?.profilePicture;
     return (
         <>
             <div className="Home">
@@ -26,8 +34,8 @@ const Home = () => {
                     <div className="container">
                         <div className="profile">
                             <div className="profile-image">
-                                {user.profilePicture && (
-                                    <img src={user.profilePicture.url} alt="profile" />
+                                {userProfile && (
+                                    <img src={userProfile.url} alt="profile" />
                                 )}
                             </div>
 
@@ -35,7 +43,7 @@ const Home = () => {
 
                                 <h1 className="profile-user-name">{user.name}</h1>
 
-                                <button className="btn profile-edit-btn">Edit Profile</button>
+                                <button className="btn profile-edit-btn">Position@lecturer</button>
 
                                 <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -53,7 +61,7 @@ const Home = () => {
 
                             <div className="profile-bio">
 
-                                <p><span className="profile-real-name">{user.name}</span>and am a Lecturer at AbanchiqSchoolOfFormulation 📷✈️🏕️</p>
+                                <p><span className="profile-real-name"></span> AbanchiqSchoolOfFormulation</p>
 
                             </div>
 

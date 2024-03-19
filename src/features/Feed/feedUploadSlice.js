@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { addPost, getSingleFeed, updateSingleFeed, deleteFeed } from './feedService';
+import { addPost, updateSingleFeed, deleteFeed } from './feedService';
 
 
 const initialState = {
@@ -24,19 +24,6 @@ export const addPostAsync = createAsyncThunk(
     }
 );
 
-export const fetchSingleFeedAsync = createAsyncThunk(
-    'feedUploadSlice/fetchSingle',
-    async (id, thunkAPI) => {
-        try {
-            const token = thunkAPI.getState().auth.user.token;
-            return await getSingleFeed(id, token);
-        } catch (error) {
-            const message =
-                (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-);
 export const updateSingleFeedAsync = createAsyncThunk(
     'feedUploadSlice/updateSingle',
     async ({ id, formData }, thunkAPI) => {
@@ -104,19 +91,6 @@ export const feedUploadSlice = createSlice({
                 state.post.push(action.payload);
             })
             .addCase(updateSingleFeedAsync.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            })
-            .addCase(fetchSingleFeedAsync.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(fetchSingleFeedAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.post = action.payload;
-            })
-            .addCase(fetchSingleFeedAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

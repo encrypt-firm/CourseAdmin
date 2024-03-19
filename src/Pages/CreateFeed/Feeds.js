@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 // import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Components/Spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
-
+import './Feed.css'
 
 
 function AddPostForm() {
@@ -73,47 +73,50 @@ function AddPostForm() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                required
-                type="text"
-                name="title"
-                value={postData.title}
-                onChange={handleInputChange}
-                placeholder="Title"
-            />
-            <textarea
-                required
-                name="description"
-                value={postData.description}
-                onChange={handleInputChange}
-                placeholder="Description"
-            />
-            {/* Category dropdown */}
-            <div className="form-group">
-                <select
+        <div className="create-feed">
+            <form onSubmit={handleSubmit}>
+                <input
                     required
-                    name="categories"
-                    value={postData.categories}
+                    type="text"
+                    name="title"
+                    value={postData.title}
                     onChange={handleInputChange}
-                    className="custom-select-box"
-                >
-                    <option value="">Choose Category</option>
-                    <option value="Category One">Category One</option>
-                    <option value="Category Two">Category Two</option>
-                    <option value="Category Three">Category Three</option>
-                    <option value="Category Four">Category Four</option>
-                </select>
-            </div>
-            <input
-                required
-                type="file"
-                name="images"
-                onChange={handleFileChange}
-                multiple
-            />
-            <button type="submit">Submit Post</button>
-        </form>
+                    placeholder="Title"
+                />
+                <textarea
+                    required
+                    name="description"
+                    value={postData.description}
+                    onChange={handleInputChange}
+                    placeholder="Description"
+                />
+                {/* Category dropdown */}
+                <div className="form-group">
+                    <select
+                        required
+                        name="categories"
+                        value={postData.categories}
+                        onChange={handleInputChange}
+                        className="custom-select-box"
+                    >
+                        <option value="">Choose Category</option>
+                        <option value="Category One">Category One</option>
+                        <option value="Category Two">Category Two</option>
+                        <option value="Category Three">Category Three</option>
+                        <option value="Category Four">Category Four</option>
+                    </select>
+                </div>
+                <input
+                    required
+                    type="file"
+                    name="images"
+                    onChange={handleFileChange}
+                    multiple
+                    className='file-upload'
+                />
+                <button type="submit">Submit Post</button>
+            </form>
+        </div>
     );
 }
 

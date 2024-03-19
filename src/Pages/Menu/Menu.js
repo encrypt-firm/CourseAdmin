@@ -21,11 +21,11 @@ const Menu = () => {
                     <CiHome className='icons' />
                     <p>Home</p>
                 </Link>
-                <Link to={`/dashboard/uploads/${user._id}`} className='Link'>
+                <Link to={`/dashboard/uploads/${user?._id}`} className='Link'>
                     <RiUploadCloud2Fill className='icons' />
                     <p>Create</p>
                 </Link>
-                <Link to={`/dashboard/products/${user._id}`} className='Link'>
+                <Link to={`/dashboard/products/${user?._id}`} className='Link'>
                     <SiGooglephotos className='icons' />
                     <p>Products</p>
                 </Link>
@@ -33,11 +33,11 @@ const Menu = () => {
                     <RiNotification4Fill className='icons' />
                     <p>Orders</p>
                 </Link> */}
-                <Link to={`/dashboard/notifications/${user._id}`} className='Link'>
+                <Link to={`/dashboard/notifications/${user?._id}`} className='Link'>
                     <BiSolidMessageSquareDetail className='icons' />
                     <p>Messages</p>
                 </Link>
-                <Link to={`/dashboard/profile/${user._id}`} className='Link'>
+                <Link to={`/dashboard/profile/${user?._id}`} className='Link'>
                     <FaUser className='icons' />
                     <p>Profile</p>
                 </Link>

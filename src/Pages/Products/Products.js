@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllFeedsAsync } from '../../features/Feed/feedSlice'
+import { deleteFeedAsync, fetchAllFeedsAsync } from '../../features/Feed/feedSlice'
 import Spinner from '../../Components/Spinner/Spinner'
 import { Link } from 'react-router-dom'
 import { MdOutlineEditLocationAlt } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { toast } from 'react-toastify'
 
 
 const Products = () => {
@@ -19,6 +20,7 @@ const Products = () => {
     if (isLoading) {
         return <Spinner />
     }
+
 
     return (
         <>
@@ -40,7 +42,10 @@ const Products = () => {
                                                 </Link>
                                             </li>
                                             <li className="gallery-item-comments"><span className="visually-hidden">Delete</span>
-                                                <Link className='Link delete' to={`/delete/${post._id}`}>
+                                                <Link className='Link delete' onClick={() => {
+                                                    dispatch(deleteFeedAsync(post._id));
+                                                    toast.success('Post deleted successfully');
+                                                }}>
                                                     <MdDelete />
                                                 </Link>
                                             </li>
