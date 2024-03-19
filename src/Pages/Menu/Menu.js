@@ -29,10 +29,6 @@ const Menu = () => {
                     <SiGooglephotos className='icons' />
                     <p>Products</p>
                 </Link>
-                {/* <Link to='/dashboard:userid/settings' className='Link'>
-                    <RiNotification4Fill className='icons' />
-                    <p>Orders</p>
-                </Link> */}
                 <Link to={`/dashboard/notifications/${user?._id}`} className='Link'>
                     <BiSolidMessageSquareDetail className='icons' />
                     <p>Messages</p>

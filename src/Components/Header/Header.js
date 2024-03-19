@@ -91,7 +91,7 @@ function Header() {
                                 </div>
                                 {showMenuIcon && (
                                     <div ref={menuRef} className="menuIcon">
-                                        <Link to={`/app/${user._id}`}><button>My Dashboard</button></Link>
+                                        {/* <Link to={`/app/${user._id}`}><button>My Dashboard</button></Link> */}
                                         <Link><button onClick={onLogout}>Logout</button></Link>
                                     </div>
                                 )}
@@ -131,7 +131,7 @@ function Header() {
                             <Link to='/shop/dashboard/events'>
                                 <li className="cartButton">
                                     <BsCart4 className='cart-icon' />
-                                    <div className="cart"><span>4</span></div>
+                                    <div className="cart"><span>0</span></div>
                                 </li>
                             </Link>
                             {/* <Link to='/shop/dashboard/events'>

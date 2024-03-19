@@ -33,9 +33,32 @@
   border-radius: 50%;
   background: #54057b;
   color: white;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
-.navigation .Link p{
-    font-size: 11px;
+.navigation .Link p {
+  font-size: 11px;
+}
+
+@media screen and (max-width: 500px) {
+  .navigation {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 10;
+    /* background: white; */
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.71);
+    border-radius: 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.4px);
+    -webkit-backdrop-filter: blur(1.4px);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+  }
 }
