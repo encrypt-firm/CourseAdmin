@@ -7,8 +7,8 @@ import singleFetchReducer from '../features/Feed/singleFetchSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    feed: feedReducer,
-    feedUpload: feedUploadReducer,
+    courses: feedReducer,
+    courseUpload: feedUploadReducer,
     id: singleFetchReducer,
   },
 });

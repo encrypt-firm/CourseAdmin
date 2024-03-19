@@ -27,7 +27,7 @@ const Menu = () => {
                 </Link>
                 <Link to={`/dashboard/products/${user?._id}`} className='Link'>
                     <SiGooglephotos className='icons' />
-                    <p>Products</p>
+                    <p>Courses</p>
                 </Link>
                 <Link to={`/dashboard/notifications/${user?._id}`} className='Link'>
                     <BiSolidMessageSquareDetail className='icons' />

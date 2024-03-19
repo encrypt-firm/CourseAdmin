@@ -10,11 +10,14 @@ import './Feed.css'
 
 function AddPostForm() {
 
-    const { isLoading, isSuccess, message, isError } = useSelector((state) => state.feedUpload)
+    const { isLoading, isSuccess, message, isError } = useSelector((state) => state.courseUpload)
     const navigate = useNavigate()
     const [postData, setPostData] = useState({
         title: '',
+        overview: '',
         description: '',
+        duration: '',
+        cost: '',
         categories: '',
         images: [],
     });
@@ -40,7 +43,10 @@ function AddPostForm() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('title', postData.title);
+        formData.append('overview', postData.overview);
         formData.append('description', postData.description);
+        formData.append('duration', postData.duration);
+        formData.append('cost', postData.cost);
         formData.append('categories', postData.categories);
         Array.from(postData.images).forEach(image => {
             formData.append('images', image);
@@ -48,7 +54,10 @@ function AddPostForm() {
         dispatch(addPostAsync(formData));
         setPostData({
             title: '',
+            overview: '',
             description: '',
+            duration: '',
+            cost: '',
             categories: '',
             images: [],
         });
@@ -81,14 +90,37 @@ function AddPostForm() {
                     name="title"
                     value={postData.title}
                     onChange={handleInputChange}
-                    placeholder="Title"
+                    placeholder="Course Title"
+                />
+                <textarea
+                    required
+                    name="overview"
+                    value={postData.overview}
+                    onChange={handleInputChange}
+                    placeholder="Brief overview infomation"
                 />
                 <textarea
                     required
                     name="description"
                     value={postData.description}
                     onChange={handleInputChange}
-                    placeholder="Description"
+                    placeholder="Detailed Description"
+                />
+                <input
+                    required
+                    type="text"
+                    name="duration"
+                    value={postData.duration}
+                    onChange={handleInputChange}
+                    placeholder="Course duration"
+                />
+                <input
+                    required
+                    type="text"
+                    name="cost"
+                    value={postData.cost}
+                    onChange={handleInputChange}
+                    placeholder="Course Charges"
                 />
                 {/* Category dropdown */}
                 <div className="form-group">

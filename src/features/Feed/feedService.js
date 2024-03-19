@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://abanchiqschoolapi.onrender.com/api/auth/adminstration/lecs';
+const API_URL = 'https://abanchiqschoolapi.onrender.com/api/courses';
 
 export const addPost = async (postData, token) => {
     try {
@@ -23,9 +23,6 @@ export const addPost = async (postData, token) => {
 };
 export const getAllFeeds = async () => {
     const response = await axios.get(API_URL, {
-        // headers: {
-        // Authorization: `Bearer ${token}`,
-        // },
     });
     return response.data;
 };

@@ -8,14 +8,17 @@ import { fetchSingleFeedAsync } from '../../features/Feed/singleFetchSlice'
 
 function FeedsUpdate() {
     const { id } = useParams();
-    const { isLoading, message, isError, isSuccess } = useSelector(state => state.feedUpload);
+    const { isLoading, message, isError, isSuccess } = useSelector(state => state.courseUpload);
     const { post, isLoadingData } = useSelector(state => state.id);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [postData, setPostData] = useState({
         title: '',
+        overview: '',
         description: '',
+        duration: '',
+        cost: '',
         categories: '',
         images: [],
     });
@@ -32,6 +35,9 @@ function FeedsUpdate() {
                 title: post.title || '',
                 description: post.description || '',
                 categories: post.categories || '',
+                overview: post.overview || '',
+                duration: post.duration || '',
+                cost: post.cost || '',
                 images: [],
             });
         }
@@ -57,6 +63,9 @@ function FeedsUpdate() {
         const formData = new FormData();
         formData.append('title', postData.title);
         formData.append('description', postData.description);
+        formData.append('overview', postData.overview);
+        formData.append('duration', postData.duration);
+        formData.append('cost', postData.cost);
         formData.append('categories', postData.categories);
         Array.from(postData.images).forEach(image => {
             formData.append('images', image);
@@ -103,14 +112,37 @@ function FeedsUpdate() {
                     name="title"
                     value={postData.title}
                     onChange={handleInputChange}
-                    placeholder="Title"
+                    placeholder="Course Title"
+                />
+                <textarea
+                    required
+                    name="overview"
+                    value={postData.overview}
+                    onChange={handleInputChange}
+                    placeholder="Brief overview infomation"
                 />
                 <textarea
                     required
                     name="description"
                     value={postData.description}
                     onChange={handleInputChange}
-                    placeholder="Description"
+                    placeholder="Detailed Description"
+                />
+                <input
+                    required
+                    type="text"
+                    name="duration"
+                    value={postData.duration}
+                    onChange={handleInputChange}
+                    placeholder="Course duration"
+                />
+                <input
+                    required
+                    type="text"
+                    name="cost"
+                    value={postData.cost}
+                    onChange={handleInputChange}
+                    placeholder="Course Charges"
                 />
                 {/* Category dropdown */}
                 <div className="form-group">
@@ -136,7 +168,7 @@ function FeedsUpdate() {
                     multiple
                     className='file-upload'
                 />
-                <button type="submit">Submit Post</button>
+                <button type="submit">Update Course</button>
             </form>
         </div>
     )

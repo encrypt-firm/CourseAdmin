@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 
 
 const Products = () => {
-    const { posts, isLoading } = useSelector((state) => state.feed)
+    const { posts, isLoading } = useSelector((state) => state.courses)
     const dispatch = useDispatch()
 
     useEffect(() => {
