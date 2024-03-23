@@ -154,12 +154,12 @@ function FeedsUpdate() {
                         className="custom-select-box"
                     >
                         <option value="">Choose Category</option>
-                        <option value="Category One">Hair Products</option>
-                        <option value="Category Two">Facial Products</option>
-                        <option value="Category Three">Body Products</option>
-                        <option value="Category Four">Baby Products</option>
-                        <option value="Category Four">Acne Products</option>
-                        <option value="Category Four">Industrial Products</option>
+                        <option value="Hair">Hair Products</option>
+                        <option value="Facial">Facial Products</option>
+                        <option value="Body">Body Products</option>
+                        <option value="Baby">Baby Products</option>
+                        <option value="Acne">Acne Products</option>
+                        <option value="Industrial">Industrial Products</option>
                     </select>
                 </div>
                 <input
