@@ -132,10 +132,12 @@ function AddPostForm() {
                         className="custom-select-box"
                     >
                         <option value="">Choose Category</option>
-                        <option value="Category One">Category One</option>
-                        <option value="Category Two">Category Two</option>
-                        <option value="Category Three">Category Three</option>
-                        <option value="Category Four">Category Four</option>
+                        <option value="Category One">Hair Products</option>
+                        <option value="Category Two">Facial Products</option>
+                        <option value="Category Three">Body Products</option>
+                        <option value="Category Four">Baby Products</option>
+                        <option value="Category Four">Acne Products</option>
+                        <option value="Category Four">Industrial Products</option>
                     </select>
                 </div>
                 <input
